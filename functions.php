@@ -27,6 +27,8 @@ $caption = $update['message']['caption']; // Text in the media file
 $userID = $update['message']['from']['id']; // ID of the user who sent the message
 $chatID = $update['message']['chat']['id'];  // ID of the group/channel
 $typechat = $update['message']['chat']['type']; // Type of the chat (group, supergroup, channel, private)
+$title = $update['message']['chat']['title']; // Title of the chat
+
 global $alias;
 // Telegram API Methods
 
