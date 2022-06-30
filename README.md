@@ -21,7 +21,7 @@ This Telegram Bot offers the ability to force users to add a reason using the @a
 1. Download the Bot files from the dedicated button.
 2. Place the above files in a folder on your web server.
 3. Set up the bot webhook using the following link:
-https://api.telegram.org/botTOKEN/setWebhook?url=https://your-domain.com/FOLDERNAME/bot.php
+https://api.telegram.org/botTOKEN/setWebhook?url=https://your-domain.com/FOLDERNAME/bot.php?key=TOKEN
 
 ### Roadmap and / or requests and reports
 

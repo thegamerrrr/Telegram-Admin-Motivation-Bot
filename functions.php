@@ -17,6 +17,9 @@
 
 // Telegram Vars
 
+$content = file_get_contents("php://input");
+$update = json_decode($content, true);
+
 $msg = $update['message']['text']; // Text of the sended message
 $msgID = $update['message']['message_id']; // ID of the sended message
 $caption = $update['message']['caption']; // Text in the media file
