@@ -27,7 +27,7 @@ https://api.telegram.org/botTOKEN/setWebhook?url=https://your-domain.com/FOLDERN
 
 You can view a list of the features that will be added to the Bot code by following [this link](https://github.com/users/thegamerrrr/projects/1). You can request the addition of new features or report a problem [by creating an issue](https://github.com/thegamerrrr/Telegram-Admin-Motivation-Bot/issues/new/choose).
 
-## About NeleBot X
+## About BotsOfGamer
 
 [📢 Telegram Channel](https://t.me/BotsOfGamer)
 
