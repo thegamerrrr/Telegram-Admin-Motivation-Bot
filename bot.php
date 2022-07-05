@@ -28,7 +28,7 @@ if($cmd == 'start' and $typechat == 'private'){
     sm($chatID, "Hi, with this bot, only when the @admin command have a reason will be sent", $menu);
 }
 
-if(strpos($msg, '@admin')===0 and in_array($typechat, ['group', 'supergroup'])){
+if(strpos($msg, '@admin')===0 and in_array($typechat, ['group', 'supergroup']) and !in_array($userID, $admin)){
     if(isset(explode(' ', $msg, 2)[1])){
         sm($chatID, "<i>Report Sent</>", $menu);
         foreach($admin as $id){
