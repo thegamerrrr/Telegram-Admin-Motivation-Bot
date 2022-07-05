@@ -17,7 +17,9 @@
 
 $api = urldecode($_GET['key']); // Get the Token from the URL
 $alias = ['/', '.']; // Array of characters to replace in the message
-$admin = 535966623; // Insert your Telegram ID here
+$admin = [
+    535966623 // Insert your Telegram ID here
+];
 
 include 'functions.php'; // Include the functions file
 
@@ -26,10 +28,12 @@ if($cmd == 'start' and $typechat == 'private'){
     sm($chatID, "Hi, with this bot, only when the @admin command have a reason will be sent", $menu);
 }
 
-if(strpos($msg, '@admin')===0 and in_array($typechat, ['group', 'supergroup'])){
+if(strpos($msg, '@admin')===0 and in_array($typechat, ['group', 'supergroup']) and !in_array($userID, $admin)){
     if(isset(explode(' ', $msg, 2)[1])){
         sm($chatID, "<i>Report Sent</>", $menu);
-        sm($admin, "⚠️ <b>ATTENTION</>\n\n<a href='tg://user?id=" . $userID . "'>$userID</> requested the intervention of the staff in the group " . $title ."\n\n📝 Reason: " . explode(' ', $msg, 2)[1] . "\n👀 <a href='https://t.me/c/" . str_replace('-100', '', $chatID) . "/". $msgID ."'><i>Go to the message...</></>", $menu);
+        foreach($admin as $id){
+            sm($id, "⚠️ <b>ATTENTION</>\n\n<a href='tg://user?id=" . $userID . "'>$userID</> requested the intervention of the staff in the group " . $title ."\n\n📝 Reason: " . explode(' ', $msg, 2)[1] . "\n👀 <a href='https://t.me/c/" . str_replace('-100', '', $chatID) . "/". $msgID ."'><i>Go to the message...</></>", $menu);
+        }
     }else{
         $r = sm($userID, "❌ <i>You have to write the reason of the report</>", $menu);
         if($r['ok'] == false){
