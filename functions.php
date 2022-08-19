@@ -45,38 +45,32 @@ global $alias;
 ############# Telegram API Methods #############
 
 // Invio messaggi | sendMessage
-function sm($chatID, $text = "ᅠ", $rmf = false, $pm = 'def', $reply = false, $dislink = 'def', $inline = true) {
+function sm($chatID, $text = "ᅠ", $rmf = false, $pm = 'def', $reply = false, $dislink = true, $inline = true) {
 	global $api;
 	global $config;
 
 	if ($pm === 'def') {
 		$pm = 'HTML';
 	}
-	if ($dislink === 'def') {
-		$dislink = $config['disabilita_anteprima_link'];
-	}
-	if ($config['azioni']) {
-		scAction($chatID, 'typing');
-	}
+	
 	$args = [
 		'chat_id' => $chatID,
 		'text' => $text,
 		'disable_web_page_preview' => $dislink,
 	];
+
 	if (is_array($pm) and !empty($pm)) {
 		$args['entities'] = json_encode($pm);
 	} else {
 		$args['parse_mode'] = $pm;
 	}
-	if ($config['disabilita_notifica']) {
-		$args['disable_notification'] = true;
-	}
-	if ($rmf == 'rispondimi') {
+
+	if ($rmf == 'replyme') {
 		$rm = [
 			'force_reply' => true,
 			'selective' => true
 		];
-	} elseif ($rmf == 'nascondi') {
+	} elseif ($rmf == 'hide') {
 		$rm = [
 			'hide_keyboard' => true
 		];
@@ -95,7 +89,6 @@ function sm($chatID, $text = "ᅠ", $rmf = false, $pm = 'def', $reply = false, $
 	}
 	if ($reply) {
 		$args['reply_to_message_id'] = $reply;
-		$args['allow_sending_without_reply'] = $config['send_without_reply'];
 	}
 	
 	$rr = sendRequest("https://api.telegram.org/bot$api/sendMessage", $args);
